@@ -16,9 +16,14 @@ Creación, puesta en marcha y coordinación de hilos.
 
 ## Solucion Parte I
 
-### Cantidad de nucleos usados
+### Procesamiento un solo hilo
 
 ![image](https://user-images.githubusercontent.com/90010884/185400938-6a4390a7-f2b5-422e-8f6b-2b129dd0c363.png)
+
+### Procesamiento 3 hilos
+
+![image](https://user-images.githubusercontent.com/90010884/185402226-d9610594-e9ab-4333-89bb-e682086993a3.png)
+
 
 
 #####Parte II 
