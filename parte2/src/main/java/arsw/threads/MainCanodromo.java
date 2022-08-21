@@ -12,6 +12,7 @@ public class MainCanodromo {
     private static Canodromo can;
 
     private static RegistroLlegada reg = new RegistroLlegada();
+    private static boolean pausado = false;
 
     public static void main(String[] args) {
         can = new Canodromo(17, 100);
@@ -38,7 +39,14 @@ public class MainCanodromo {
                                     galgos[i].start();
 
                                 }
-                               
+                                for (int i = 0; i < can.getNumCarriles(); i++) {
+                                    try {
+                                        galgos[i].join();
+                                    } catch (InterruptedException ex) {
+                                        ex.printStackTrace();
+                                    }
+
+                                }
 				can.winnerDialog(reg.getGanador(),reg.getUltimaPosicionAlcanzada() - 1); 
                                 System.out.println("El ganador fue:" + reg.getGanador());
                             }
@@ -52,7 +60,13 @@ public class MainCanodromo {
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        System.out.println("Carrera pausada!");
+                        for(Galgo galgo:galgos) {
+                            galgo.pausar();
+                        }
+                        if(!pausado) {
+                            System.out.println("Carrera pausada!");
+                        }
+                        pausado = true;
                     }
                 }
         );
@@ -61,7 +75,13 @@ public class MainCanodromo {
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        System.out.println("Carrera reanudada!");
+                        for(Galgo galgo:galgos) {
+                            galgo.reanudar();
+                        }
+                        if(pausado) {
+                            System.out.println("Carrera reanudada!");
+                        }
+                        pausado = false;
                     }
                 }
         );
